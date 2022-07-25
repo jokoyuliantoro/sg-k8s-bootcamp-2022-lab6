@@ -1,0 +1,24 @@
+apiVersion: "cis.f5.com/v1"
+kind: VirtualServer
+metadata:
+  name: vs-echo
+  namespace: nginx-ingress
+  labels:
+    f5cr: "true"
+spec:
+  host: echo.example.com
+  hostGroup: "echo"
+  ipamLabel: Test
+  virtualServerHTTPPort: 80
+  snat: auto
+  pools:
+  - monitor:
+      interval: 20
+      recv: ""
+      send: "GET /api HTTP/1.1\r\nHost: echo.example.com\r\n"
+      timeout: 10
+      type: http
+    path: /api
+    nodeMemberLabel: "cis.f5.com/nodeMemberLabel=group1"
+    service: nginx-ingress
+    servicePort: 80
