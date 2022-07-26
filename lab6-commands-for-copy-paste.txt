@@ -1,0 +1,21 @@
+=== SG K8s Bootcamp 2022 - Lab6 Commands ===
+
+git clone https://github.com/jokoyuliantoro/sg-k8s-bootcamp-2022-lab6
+
+cp sg-k8s-bootcamp-2022-lab6/* .
+
+kubectl get pods -A
+
+kubectl create -f echo-api-deployment.yaml
+
+kubectl create -f echo-api-ingress.yaml
+
+kubectl create -f echo-api-vs.yaml
+
+kubectl create -f echo-api-edns.yaml
+
+dig @10.53.53.53 +short echo.example.com
+
+kubectl scale deployment echo-api --replicas=0
+
+
